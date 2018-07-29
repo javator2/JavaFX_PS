@@ -4,7 +4,16 @@ import javafx.beans.property.StringProperty;
 public class Person {
 
     private StringProperty name;
+    private StringProperty lastName;
+    private StringProperty adress;
+    private StringProperty town;
+    private StringProperty zipCode;
+    private StringProperty telephoneNumber;
 
+    public Person(String name,String lastName){
+        this.name = new SimpleStringProperty(name);
+        this.lastName = new SimpleStringProperty(lastName);
+    }
     public String getName() {
         return name.get();
     }
@@ -53,14 +62,5 @@ public class Person {
         return telephoneNumber;
     }
 
-    private StringProperty lastName;
-    private StringProperty adress;
-    private StringProperty town;
-    private StringProperty zipCode;
-    private StringProperty telephoneNumber;
 
-    public Person(String name,String lastName){
-        this.name = new SimpleStringProperty(name);
-        this.lastName = new SimpleStringProperty(lastName);
-    }
 }

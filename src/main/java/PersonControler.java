@@ -1,4 +1,5 @@
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -26,6 +27,17 @@ public class PersonControler {
     private TableColumn <Person,String> nameCol;
     @FXML
     private TableColumn <Person,String> lastNameCol;
+
+    @FXML
+    private Button newButton;
+
+    @FXML
+   public void handleNewButton(){
+        System.out.println("testTest");
+        this.main.loadPersonEdit();
+    }
+
+
     @FXML
     public void initialize(){
         nameCol.setCellValueFactory(cell-> cell.getValue().nameProperty());
@@ -34,6 +46,6 @@ public class PersonControler {
 
     public void setMain(Main main) {
         this.main = main;
-        personTable.setItems(main.getPersonList());
+        personTable.setItems(this.main.getPersonList());
     }
 }

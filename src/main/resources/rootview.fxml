@@ -110,7 +110,7 @@
                         <Label layoutX="135.0" layoutY="6.0" text="Worker informations" />
                         <ButtonBar layoutX="-7.0" layoutY="313.0" prefHeight="40.0" prefWidth="380.0">
                           <buttons>
-                              <Button mnemonicParsing="false" text="NEW" />
+                              <Button onAction="#handleNewButton" mnemonicParsing="false" text="NEW" />
                               <Button mnemonicParsing="false" text="EDIT" />
                               <Button mnemonicParsing="false" text="DELETE" />
                           </buttons>
