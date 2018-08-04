@@ -10,10 +10,41 @@ public class Person {
     private StringProperty zipCode;
     private StringProperty telephoneNumber;
 
-    public Person(String name,String lastName){
+    public void setName(String name) {
+        this.name.set(name);
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName.set(lastName);
+    }
+
+    public void setAdress(String adress) {
+        this.adress.set(adress);
+    }
+
+    public void setTown(String town) {
+        this.town.set(town);
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode.set(zipCode);
+    }
+
+    public void setTelephoneNumber(String telephoneNumber) {
+        this.telephoneNumber.set(telephoneNumber);
+    }
+
+
+
+    public Person(String name,String lastName,String adress,String town,String zipCode, String telephoneNumber){
         this.name = new SimpleStringProperty(name);
         this.lastName = new SimpleStringProperty(lastName);
-    }
+        this.adress= new SimpleStringProperty(adress);
+        this.town= new SimpleStringProperty(town);
+        this.zipCode= new SimpleStringProperty(zipCode);
+        this.telephoneNumber= new SimpleStringProperty(telephoneNumber);
+        }
+
     public String getName() {
         return name.get();
     }
@@ -61,6 +92,7 @@ public class Person {
     public StringProperty telephoneNumberProperty() {
         return telephoneNumber;
     }
+
 
 
 }
