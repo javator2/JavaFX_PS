@@ -111,8 +111,8 @@
                         <ButtonBar layoutX="-7.0" layoutY="313.0" prefHeight="40.0" prefWidth="380.0">
                           <buttons>
                               <Button onAction="#handleNewButton" mnemonicParsing="false" text="NEW" />
-                              <Button mnemonicParsing="false" text="EDIT" />
-                              <Button mnemonicParsing="false" text="DELETE" />
+                              <Button onAction="#handlePersonEdit" mnemonicParsing="false" text="EDIT" />
+                              <Button onAction="#handleDeletePerson" mnemonicParsing="false" text="DELETE" />
                           </buttons>
                         </ButtonBar>
                      </children>

@@ -22,7 +22,7 @@ public class Main extends Application {
         personList.add(new Person("Bożena","Nowak"));
     }
 
-    public ObservableList<Person> getPersonList() {
+    ObservableList<Person> getPersonList() {
         return personList;
     }
     public static void main(String[] args) {
@@ -56,14 +56,26 @@ public class Main extends Application {
 
     }
 
-    public void loadPersonEdit(){
+    void loadNewPerson(){
+        loader("/newPerson.fxml","Add person");
+    }
+
+    void loadPersonEdit() {
+        loader("/personEdit.fxml","Edit person");
+    }
+
+    void loadDeletePerson() {
+        loader("/personDelete.fxml","Delete person");
+    }
+
+    private void loader(String path, String title){
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("/personEdit.fxml"));
+            loader.setLocation(Main.class.getResource(path));
             VBox window = (VBox)loader.load();
 
             Stage editStage = new Stage();
-            editStage.setTitle("edytuj osobe");
+            editStage.setTitle(title);
             Scene scene = new Scene(window);
             editStage.setScene(scene);
             editStage.show();
@@ -71,6 +83,5 @@ public class Main extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }

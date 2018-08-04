@@ -1,3 +1,4 @@
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -33,10 +34,16 @@ public class PersonControler {
 
     @FXML
    public void handleNewButton(){
-        System.out.println("testTest");
+        this.main.loadNewPerson();
+    }
+    @FXML
+    public void handlePersonEdit(ActionEvent actionEvent) {
         this.main.loadPersonEdit();
     }
-
+    @FXML
+    public void handleDeletePerson(ActionEvent actionEvent) {
+        this.main.loadDeletePerson();
+    }
 
     @FXML
     public void initialize(){
@@ -44,8 +51,9 @@ public class PersonControler {
         lastNameCol.setCellValueFactory(cell-> cell.getValue().lastNameProperty());
     }
 
-    public void setMain(Main main) {
+    void setMain(Main main) {
         this.main = main;
         personTable.setItems(this.main.getPersonList());
     }
+
 }

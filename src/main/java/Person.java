@@ -18,7 +18,7 @@ public class Person {
         return name.get();
     }
 
-    public StringProperty nameProperty() {
+    StringProperty nameProperty() {
         return name;
     }
 
@@ -26,7 +26,7 @@ public class Person {
         return lastName.get();
     }
 
-    public StringProperty lastNameProperty() {
+    StringProperty lastNameProperty() {
         return lastName;
     }
 
