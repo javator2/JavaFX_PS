@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -18,12 +19,14 @@ public class Main extends Application {
 
     private Stage stage;
     private VBox layout;
+
+
+
     private ObservableList<Person> personList = FXCollections.observableArrayList();
 
     public Main() throws IOException {
         personList.addAll(readFromJson("personList"));
-        saveToJson(personList, "personList");
-    }
+        }
 
     public static void main(String[] args) {
         launch();
@@ -36,7 +39,9 @@ public class Main extends Application {
     ObservableList<Person> getPersonList() {
         return personList;
     }
-
+    public void setPersonList(ObservableList<Person> personList) {
+        this.personList = personList;
+    }
     public void start(Stage primaryStage) throws Exception {
         this.stage = primaryStage;
         this.stage.setTitle("Moja aplikacja w JavaFX");
@@ -62,7 +67,6 @@ public class Main extends Application {
 
 
     }
-
     void loadNewPerson() {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -78,7 +82,6 @@ public class Main extends Application {
             Person newPerson = new Person("","","","","","");
             PersonDetails personDetails = loader.getController();
             personDetails.setStage(editStage);
-            personDetails.select(newPerson);
             personDetails.setPerson(newPerson);
             personList.add(newPerson);
 
@@ -86,7 +89,6 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
-
     void loadPersonEdit(Person person) {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -110,7 +112,7 @@ public class Main extends Application {
         }
     }
 
-    Collection<? extends Person> readFromJson(String nameOfTheFile) throws IOException {
+    static Collection<? extends Person> readFromJson(String nameOfTheFile) throws IOException {
         ObservableList<Person> personListToRead = FXCollections.observableArrayList();
         ObjectMapper mapper = new ObjectMapper();
 
@@ -122,7 +124,6 @@ public class Main extends Application {
         personListToRead.addAll(PersonConverter.convertToStringProperty(personListInString));
         return personListToRead;
     }
-
     static void saveToJson(ObservableList<Person> listsOfPersons, String nameOfFile) throws IOException {
         List<PersonInString> personListToSave
                 = new ArrayList<>(PersonConverter.convertToSting(listsOfPersons));

@@ -1,3 +1,5 @@
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -69,13 +71,21 @@ public class PersonControler {
                 .addListener((observable, oldField, newField) -> showPersonDetails(newField));
     }
     private void showPersonDetails(Person person) {
+        if (person==null){
+            nameLabel.setText("");
+            lastNameLabel.setText("");;
+            adressLabel.setText("");
+            townLabel.setText("");
+            zipCodeLabel.setText("");
+            telephoneNumberLabel.setText("");
+        }else {
         nameLabel.setText(person.getName());
         lastNameLabel.setText(person.getLastName());
         adressLabel.setText(person.getAdress());
         townLabel.setText(person.getTown());
         zipCodeLabel.setText(person.getZipCode());
         telephoneNumberLabel.setText(person.getTelephoneNumber());
-    }
+        }}
 
     void setMain(Main main) {
         this.main = main;
@@ -89,6 +99,16 @@ public class PersonControler {
     public void handleSaveButton(ActionEvent actionEvent) throws IOException {
         Main.saveToJson(main.getPersonList(), "personList");
         Alert alert = new Alert(Alert.AlertType.INFORMATION,"File is save");
+        alert.showAndWait();
+    }
+
+
+    public void handleLoadButton(ActionEvent actionEvent) throws IOException {
+        ObservableList<Person> personList = FXCollections.observableArrayList();
+        personList.addAll(Main.readFromJson("personList"));
+        main.getPersonList().clear();
+        main.getPersonList().addAll(personList);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION,"File is Load");
         alert.showAndWait();
     }
 }

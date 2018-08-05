@@ -19,7 +19,7 @@
 
 <VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PersonControler">
   <children>
-    <MenuBar VBox.vgrow="NEVER">
+    <MenuBar prefHeight="25.0" prefWidth="714.0" VBox.vgrow="NEVER">
       <menus>
         <Menu mnemonicParsing="false" text="File">
           <items>
@@ -108,19 +108,20 @@
                            </children>
                         </GridPane>
                         <Label layoutX="135.0" layoutY="6.0" text="Worker informations" />
-                        <ButtonBar layoutY="319.0" prefHeight="40.0" prefWidth="380.0">
-                          <buttons>
-                              <Button mnemonicParsing="false" onAction="#handleSaveButton" text="SAVE" />
-                              <Button mnemonicParsing="false" onAction="#handleNewButton" text="NEW" />
-                              <Button mnemonicParsing="false" onAction="#handlePersonEdit" text="EDIT" />
-                              <Button mnemonicParsing="false" onAction="#handleDeletePerson" text="DELETE" />
-                          </buttons>
-                        </ButtonBar>
                      </children>
                   </AnchorPane>
               </items>
             </SplitPane>
       </children>
     </AnchorPane>
+      <ButtonBar prefHeight="46.0" prefWidth="520.0">
+        <buttons>
+            <Button mnemonicParsing="false" onAction="#handleSaveButton" prefHeight="25.0" prefWidth="124.0" text="SAVE" />
+            <Button mnemonicParsing="false" onAction="#handleLoadButton" text="LOAD" />
+            <Button mnemonicParsing="false" onAction="#handleNewButton" text="NEW" />
+            <Button mnemonicParsing="false" onAction="#handlePersonEdit" text="EDIT" />
+            <Button mnemonicParsing="false" onAction="#handleDeletePerson" text="DELETE" />
+        </buttons>
+      </ButtonBar>
   </children>
 </VBox>
