@@ -1,3 +1,4 @@
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,7 +17,10 @@ public class PersonConverterToStingList {
     private String zipCode;
     private String telephoneNumber;
 
-    public static Collection<? extends PersonConverterToStingList> convert(ObservableList<Person> personList) {
+    public PersonConverterToStingList() {
+    }
+
+    static Collection<? extends PersonConverterToStingList> convert(ObservableList<Person> personList) {
         List<PersonConverterToStingList> personListToSave = new ArrayList<>();
 
         for (Person aPersonList : personList) {
@@ -32,6 +36,24 @@ public class PersonConverterToStingList {
         }
 
         return personListToSave;
+    }
+    static ObservableList <Person> convertToStringProperty(List<PersonConverterToStingList> personListToRead) {
+         ObservableList <Person> personList = FXCollections.observableArrayList();
+
+        for (PersonConverterToStingList aPersonListToRead : personListToRead) {
+
+            personList.add
+                    (new Person
+                            (aPersonListToRead.name,
+                                    aPersonListToRead.lastName,
+                                    aPersonListToRead.adress,
+                                    aPersonListToRead.town,
+                                    aPersonListToRead.zipCode,
+                                    aPersonListToRead.telephoneNumber
+                            ));
+        }
+
+        return personList;
     }
 
 

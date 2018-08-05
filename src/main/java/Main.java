@@ -1,3 +1,4 @@
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -10,9 +11,10 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
+
 import java.util.ArrayList;
-import java.util.Arrays;
+
+import java.util.Collection;
 import java.util.List;
 
 public class Main extends Application {
@@ -24,20 +26,11 @@ public class Main extends Application {
     private ObservableList <Person> personList = FXCollections.observableArrayList();
 
     public Main() throws IOException {
-        List<PersonConverterToStingList> personListToSave = new ArrayList<>();
-
-        personList.add(new Person("Jan","Kowalski","Władysława Łokietka 5","Torun","87-100","666 666 666"));
-        personList.add(new Person("Jan","Nowak","Władysława Łokietka 5","Torun","87-100","666 666 666"));
-        personList.add(new Person("Anna","Kowalska","Władysława Łokietka 5","Torun","87-100","666 666 666"));
-        personList.add(new Person("Bozena","Nowak","Władysława Łokietka 5","Torun","87-100","666 666 666"));
-
-
-        personListToSave.addAll(PersonConverterToStingList.convert(getPersonList()));
-        ObjectMapper mapper = new ObjectMapper();
-        File filename = new File("personList.json");
-        filename.createNewFile();
-        mapper.writeValue(filename,personListToSave);
+       personList.addAll(readFromJson("personList"));
+       saveToJson(personList,"personList");
     }
+
+
 
     ObservableList<Person> getPersonList() {
         return personList;
@@ -121,8 +114,29 @@ public class Main extends Application {
         }
     }
 
-    public Stage getStage() {
+     Stage getStage() {
         return stage;
     }
 
+    private Collection<? extends Person> readFromJson(String nameOfTheFile) throws IOException {
+        ObservableList <Person> personListToRead = FXCollections.observableArrayList();
+        ObjectMapper mapper = new ObjectMapper();
+
+        List<PersonConverterToStingList> personListInString =
+                new ArrayList<>(mapper.readValue(new File(nameOfTheFile + ".json"),
+                        new TypeReference<List<PersonConverterToStingList>>() {
+                        }));
+
+        personListToRead.addAll(PersonConverterToStingList.convertToStringProperty(personListInString));
+        return personListToRead;
+    }
+
+    private void saveToJson(ObservableList<Person> listsOfPersons, String nameOfFile) throws IOException {
+        List<PersonConverterToStingList> personListToSave
+                = new ArrayList<>(PersonConverterToStingList.convert(listsOfPersons));
+        ObjectMapper mapper = new ObjectMapper();
+        File filename = new File(nameOfFile+".json");
+        filename.createNewFile();
+        mapper.writeValue(filename,personListToSave);
+    }
 }

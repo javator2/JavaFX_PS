@@ -10,6 +10,9 @@ public class Person {
     private StringProperty zipCode;
     private StringProperty telephoneNumber;
 
+    public Person() {
+    }
+
     public void setName(String name) {
         this.name.set(name);
     }
