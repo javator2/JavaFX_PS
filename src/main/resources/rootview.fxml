@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:controller="PersonControler" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PersonControler">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -69,7 +69,7 @@
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
-                        <TableView fx:id = "personTable" layoutX="14.0" layoutY="21.0" prefHeight="373.0" prefWidth="252.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="personTable" layoutX="14.0" layoutY="21.0" prefHeight="373.0" prefWidth="252.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
                             <TableColumn fx:id="nameCol" prefWidth="125.0" text="Name" />
                             <TableColumn fx:id="lastNameCol" prefWidth="126.0" text="Last Name" />
@@ -93,26 +93,27 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Label  text="Name" />
-                              <Label  text="LastName" GridPane.rowIndex="1" />
-                              <Label  text="Town" GridPane.rowIndex="3" />
+                              <Label text="Name" />
+                              <Label text="LastName" GridPane.rowIndex="1" />
+                              <Label text="Town" GridPane.rowIndex="3" />
                               <Label text="ZIP-CODE" GridPane.rowIndex="4" />
                               <Label text="Phone Number" GridPane.rowIndex="5" />
                               <Label text="Adress" GridPane.rowIndex="2" />
-                              <Label fx:id = "nameLabel" text="Label" GridPane.columnIndex="1" />
-                              <Label fx:id = "lastNameLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Label fx:id = "townLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Label fx:id = "zipCodeLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <Label fx:id = "telephoneNumberLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                              <Label fx:id = "adressLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <Label fx:id="nameLabel" text="Label" GridPane.columnIndex="1" />
+                              <Label fx:id="lastNameLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label fx:id="townLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label fx:id="zipCodeLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Label fx:id="telephoneNumberLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <Label fx:id="adressLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                            </children>
                         </GridPane>
                         <Label layoutX="135.0" layoutY="6.0" text="Worker informations" />
-                        <ButtonBar layoutX="-7.0" layoutY="313.0" prefHeight="40.0" prefWidth="380.0">
+                        <ButtonBar layoutY="319.0" prefHeight="40.0" prefWidth="380.0">
                           <buttons>
-                              <Button onAction="#handleNewButton" mnemonicParsing="false" text="NEW" />
-                              <Button onAction="#handlePersonEdit" mnemonicParsing="false" text="EDIT" />
-                              <Button onAction="#handleDeletePerson" mnemonicParsing="false" text="DELETE" />
+                              <Button mnemonicParsing="false" onAction="#handleSaveButton" text="SAVE" />
+                              <Button mnemonicParsing="false" onAction="#handleNewButton" text="NEW" />
+                              <Button mnemonicParsing="false" onAction="#handlePersonEdit" text="EDIT" />
+                              <Button mnemonicParsing="false" onAction="#handleDeletePerson" text="DELETE" />
                           </buttons>
                         </ButtonBar>
                      </children>

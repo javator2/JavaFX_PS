@@ -75,6 +75,13 @@ public class Main extends Application {
             editStage.setScene(scene);
             editStage.show();
 
+            Person newPerson = new Person("","","","","","");
+            PersonDetails personDetails = loader.getController();
+            personDetails.setStage(editStage);
+            personDetails.select(newPerson);
+            personDetails.setPerson(newPerson);
+            personList.add(newPerson);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -103,7 +110,7 @@ public class Main extends Application {
         }
     }
 
-    private Collection<? extends Person> readFromJson(String nameOfTheFile) throws IOException {
+    Collection<? extends Person> readFromJson(String nameOfTheFile) throws IOException {
         ObservableList<Person> personListToRead = FXCollections.observableArrayList();
         ObjectMapper mapper = new ObjectMapper();
 
@@ -116,7 +123,7 @@ public class Main extends Application {
         return personListToRead;
     }
 
-    private void saveToJson(ObservableList<Person> listsOfPersons, String nameOfFile) throws IOException {
+    static void saveToJson(ObservableList<Person> listsOfPersons, String nameOfFile) throws IOException {
         List<PersonInString> personListToSave
                 = new ArrayList<>(PersonConverter.convertToSting(listsOfPersons));
         ObjectMapper mapper = new ObjectMapper();

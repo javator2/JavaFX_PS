@@ -32,7 +32,6 @@ public class PersonDetails {
     }
     void setStage(Stage editStage) {
         this.stage=editStage;
-
     }
     void setPerson (Person person){
          this.person = person;
