@@ -38,6 +38,10 @@ public class PersonDetails {
          this.person = person;
          name.setText(person.getName());
          lastName.setText(person.getLastName());
+         adress.setText(person.getAdress());
+         town.setText(person.getTown());
+         zipCode.setText(person.getZipCode());
+         phoneNumber.setText(person.getTelephoneNumber());
 }
 
     public void handleAbort(ActionEvent actionEvent) {
@@ -46,6 +50,10 @@ public class PersonDetails {
     public void handleOK(){
         person.setName(name.getText());
         person.setLastName(lastName.getText());
+        person.setAdress(adress.getText());
+        person.setTown(town.getText());
+        person.setZipCode(zipCode.getText());
+        person.setTelephoneNumber(phoneNumber.getText());
         this.stage.close();
 
     }
