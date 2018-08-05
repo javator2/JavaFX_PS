@@ -20,7 +20,6 @@ public class PersonNew {
     @FXML
     private Button newButton;
     private ObservableList<Person> personList;
-
     @FXML
     public void handleNewButton(){
         PersonControler personControler = new PersonControler();

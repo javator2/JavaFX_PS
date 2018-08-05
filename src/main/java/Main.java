@@ -8,36 +8,33 @@ import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-
 import java.io.File;
 import java.io.IOException;
-
 import java.util.ArrayList;
-
 import java.util.Collection;
 import java.util.List;
 
 public class Main extends Application {
 
-
     private Stage stage;
     private VBox layout;
-
-    private ObservableList <Person> personList = FXCollections.observableArrayList();
+    private ObservableList<Person> personList = FXCollections.observableArrayList();
 
     public Main() throws IOException {
-       personList.addAll(readFromJson("personList"));
-       saveToJson(personList,"personList");
+        personList.addAll(readFromJson("personList"));
+        saveToJson(personList, "personList");
     }
 
+    public static void main(String[] args) {
+        launch();
+    }
 
+    Stage getStage() {
+        return stage;
+    }
 
     ObservableList<Person> getPersonList() {
         return personList;
-    }
-    public static void main(String[] args) {
-
-    launch();
     }
 
     public void start(Stage primaryStage) throws Exception {
@@ -46,18 +43,18 @@ public class Main extends Application {
         loadView();
     }
 
-    private void loadView(){
+    private void loadView() {
         try {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("/rootview.fxml"));
-        layout = (VBox) loader.load();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("/rootview.fxml"));
+            layout = (VBox) loader.load();
 
-        Scene scene = new Scene(layout);
-        stage.setScene(scene);
-        stage.show();
+            Scene scene = new Scene(layout);
+            stage.setScene(scene);
+            stage.show();
 
-        PersonControler controler = loader.getController();
-        controler.setMain(this);
+            PersonControler controler = loader.getController();
+            controler.setMain(this);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -66,23 +63,14 @@ public class Main extends Application {
 
     }
 
-    void loadNewPerson(){
-        loader("/newPerson.fxml","Add person");
-    }
-
-    void loadPersonEdit(Person person) {
-        loader("/personEdit.fxml","Edit person",person);
-    }
-
-
-    private void loader(String path, String title){
+    void loadNewPerson() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource(path));
-            VBox window = (VBox)loader.load();
+            loader.setLocation(Main.class.getResource("/newPerson.fxml"));
+            VBox window = (VBox) loader.load();
 
             Stage editStage = new Stage();
-            editStage.setTitle(title);
+            editStage.setTitle("Add person");
             Scene scene = new Scene(window);
             editStage.setScene(scene);
             editStage.show();
@@ -91,18 +79,19 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
-    private void loader(String path, String title,Person person){
+
+    void loadPersonEdit(Person person) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource(path));
-            VBox window = (VBox)loader.load();
+            loader.setLocation(Main.class.getResource("/personEdit.fxml"));
+            VBox window = (VBox) loader.load();
 
             PersonDetails personDetails = loader.getController();
             personDetails.select(person);
             personDetails.setPerson(person);
 
             Stage editStage = new Stage();
-            editStage.setTitle(title);
+            editStage.setTitle("Edit person");
             personDetails.setStage(editStage);
 
             Scene scene = new Scene(window);
@@ -114,29 +103,25 @@ public class Main extends Application {
         }
     }
 
-     Stage getStage() {
-        return stage;
-    }
-
     private Collection<? extends Person> readFromJson(String nameOfTheFile) throws IOException {
-        ObservableList <Person> personListToRead = FXCollections.observableArrayList();
+        ObservableList<Person> personListToRead = FXCollections.observableArrayList();
         ObjectMapper mapper = new ObjectMapper();
 
-        List<PersonConverterToStingList> personListInString =
+        List<PersonInString> personListInString =
                 new ArrayList<>(mapper.readValue(new File(nameOfTheFile + ".json"),
-                        new TypeReference<List<PersonConverterToStingList>>() {
+                        new TypeReference<List<PersonInString>>() {
                         }));
 
-        personListToRead.addAll(PersonConverterToStingList.convertToStringProperty(personListInString));
+        personListToRead.addAll(PersonConverter.convertToStringProperty(personListInString));
         return personListToRead;
     }
 
     private void saveToJson(ObservableList<Person> listsOfPersons, String nameOfFile) throws IOException {
-        List<PersonConverterToStingList> personListToSave
-                = new ArrayList<>(PersonConverterToStingList.convert(listsOfPersons));
+        List<PersonInString> personListToSave
+                = new ArrayList<>(PersonConverter.convertToSting(listsOfPersons));
         ObjectMapper mapper = new ObjectMapper();
-        File filename = new File(nameOfFile+".json");
+        File filename = new File(nameOfFile + ".json");
         filename.createNewFile();
-        mapper.writeValue(filename,personListToSave);
+        mapper.writeValue(filename, personListToSave);
     }
 }

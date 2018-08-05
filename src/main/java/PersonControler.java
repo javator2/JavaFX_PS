@@ -21,24 +21,23 @@ public class PersonControler {
     private Label telephoneNumberLabel;
 
     @FXML
-    private TableColumn <Person,String> nameCol;
+    private TableColumn<Person, String> nameCol;
     @FXML
-    private TableColumn <Person,String> lastNameCol;
+    private TableColumn<Person, String> lastNameCol;
 
     @FXML
     private Button newButton;
-
     @FXML
-   public void handleNewButton(){
+    public void handleNewButton() {
         this.main.loadNewPerson();
     }
     @FXML
     public void handlePersonEdit(ActionEvent actionEvent) {
         Person selectPerson = personTable.getSelectionModel().getSelectedItem();
-        if(selectPerson !=null){
-        System.out.println(selectPerson.getName() + " "+selectPerson.getLastName());
-        this.main.loadPersonEdit(selectPerson);
-    }else {
+        if (selectPerson != null) {
+            System.out.println(selectPerson.getName() + " " + selectPerson.getLastName());
+            this.main.loadPersonEdit(selectPerson);
+        } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.initOwner(main.getStage());
             alert.setTitle("Person Alert");
@@ -60,15 +59,13 @@ public class PersonControler {
             }
         }
     }
-
     @FXML
-    public void initialize(){
-        nameCol.setCellValueFactory(cell-> cell.getValue().nameProperty());
-        lastNameCol.setCellValueFactory(cell-> cell.getValue().lastNameProperty());
+    public void initialize() {
+        nameCol.setCellValueFactory(cell -> cell.getValue().nameProperty());
+        lastNameCol.setCellValueFactory(cell -> cell.getValue().lastNameProperty());
         personTable.getSelectionModel().selectedItemProperty()
                 .addListener((observable, oldField, newField) -> showPersonDetails(newField));
     }
-
     private void showPersonDetails(Person person) {
         nameLabel.setText(person.getName());
         lastNameLabel.setText(person.getLastName());
@@ -82,10 +79,8 @@ public class PersonControler {
         this.main = main;
         personTable.setItems(this.main.getPersonList());
     }
-
-    public Main getMain() {
+    Main getMain() {
         return main;
     }
-
 
 }

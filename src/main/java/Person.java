@@ -13,32 +13,6 @@ public class Person {
     public Person() {
     }
 
-    public void setName(String name) {
-        this.name.set(name);
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName.set(lastName);
-    }
-
-    public void setAdress(String adress) {
-        this.adress.set(adress);
-    }
-
-    public void setTown(String town) {
-        this.town.set(town);
-    }
-
-    public void setZipCode(String zipCode) {
-        this.zipCode.set(zipCode);
-    }
-
-    public void setTelephoneNumber(String telephoneNumber) {
-        this.telephoneNumber.set(telephoneNumber);
-    }
-
-
-
     public Person(String name,String lastName,String adress,String town,String zipCode, String telephoneNumber){
         this.name = new SimpleStringProperty(name);
         this.lastName = new SimpleStringProperty(lastName);
@@ -48,54 +22,65 @@ public class Person {
         this.telephoneNumber= new SimpleStringProperty(telephoneNumber);
         }
 
-    public String getName() {
+    String getName() {
         return name.get();
     }
-
     StringProperty nameProperty() {
         return name;
     }
 
-    public String getLastName() {
+    String getLastName() {
         return lastName.get();
     }
-
     StringProperty lastNameProperty() {
         return lastName;
     }
 
-    public String getAdress() {
+    String getAdress() {
         return adress.get();
     }
-
-    public StringProperty adressProperty() {
+    StringProperty adressProperty() {
         return adress;
     }
 
-    public String getTown() {
+    String getTown() {
         return town.get();
     }
-
-    public StringProperty townProperty() {
+    StringProperty townProperty() {
         return town;
     }
 
-    public String getZipCode() {
+    String getZipCode() {
         return zipCode.get();
     }
-
-    public StringProperty zipCodeProperty() {
+    StringProperty zipCodeProperty() {
         return zipCode;
     }
 
-    public String getTelephoneNumber() {
+    String getTelephoneNumber() {
         return telephoneNumber.get();
     }
-
-    public StringProperty telephoneNumberProperty() {
+    StringProperty telephoneNumberProperty() {
         return telephoneNumber;
     }
 
-
+    void setName(String name) {
+        this.name.set(name);
+    }
+    void setLastName(String lastName) {
+        this.lastName.set(lastName);
+    }
+    void setAdress(String adress) {
+        this.adress.set(adress);
+    }
+    void setTown(String town) {
+        this.town.set(town);
+    }
+    void setZipCode(String zipCode) {
+        this.zipCode.set(zipCode);
+    }
+    void setTelephoneNumber(String telephoneNumber) {
+        this.telephoneNumber.set(telephoneNumber);
+    }
 
 }

@@ -3,7 +3,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-
 public class PersonDetails {
 
     private Person person;
@@ -31,19 +30,11 @@ public class PersonDetails {
         zipCode.setText(selectPerson.getZipCode());
         phoneNumber.setText(selectPerson.getTelephoneNumber());
     }
-
-
-    public void setStage(Stage editStage) {
+    void setStage(Stage editStage) {
         this.stage=editStage;
 
     }
-    public void handleOK(){
-         person.setName(name.getText());
-         person.setLastName(lastName.getText());
-         this.stage.close();
-
-    }
-    public void setPerson (Person person){
+    void setPerson (Person person){
          this.person = person;
          name.setText(person.getName());
          lastName.setText(person.getLastName());
@@ -51,5 +42,11 @@ public class PersonDetails {
 
     public void handleAbort(ActionEvent actionEvent) {
         this.stage.close();
+    }
+    public void handleOK(){
+        person.setName(name.getText());
+        person.setLastName(lastName.getText());
+        this.stage.close();
+
     }
 }
