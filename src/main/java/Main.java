@@ -117,10 +117,15 @@ public class Main extends Application {
         ObjectMapper mapper = new ObjectMapper();
 
         List<PersonInString> personListInString =
-                new ArrayList<>(mapper.readValue(new File(nameOfTheFile + ".json"),
-                        new TypeReference<List<PersonInString>>() {
-                        }));
-
+                new ArrayList<>();
+        if(new File(nameOfTheFile+".json").length()>0) {
+            personListInString.addAll(mapper.readValue(new File(nameOfTheFile + ".json"),
+                    new TypeReference<List<PersonInString>>() {
+                    }));
+        } else{
+            Main.saveToJson(FXCollections.observableArrayList(),nameOfTheFile);
+            readFromJson(nameOfTheFile);
+        }
         personListToRead.addAll(PersonConverter.convertToStringProperty(personListInString));
         return personListToRead;
     }
